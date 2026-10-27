@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Інтерактивний урок з інформатики: логічні функції IF, AND, OR, NOT в електронних таблицях.">
+  <title>Логічні функції IF, AND, OR, NOT</title>
+  <style>
+    :root{--bg:#f4f7fb;--card:#fff;--ink:#172033;--muted:#627087;--primary:#5b4bdb;--primary2:#7869f2;--line:#e1e7f0;--good:#16794b;--bad:#b42318;--soft:#efedff}
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+    header{background:linear-gradient(135deg,#29236f,#6558e8 65%,#8b7cf6);color:white;padding:48px 20px 40px}
+    .hero,.container{max-width:1040px;margin:auto}.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:.78rem;font-weight:800;opacity:.85}
+    h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.1;margin:.5rem 0 1rem}.hero p{max-width:720px;font-size:1.1rem;opacity:.94}
+    .pill{display:inline-block;border:1px solid #ffffff70;border-radius:999px;padding:5px 12px;margin:4px 5px 0 0;font-size:.88rem}
+    nav{position:sticky;top:0;z-index:5;background:#ffffffed;backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+    nav .container{display:flex;gap:8px;overflow:auto;padding:10px 16px}nav a{white-space:nowrap;text-decoration:none;color:var(--ink);font-weight:700;padding:8px 12px;border-radius:10px}nav a:hover{background:var(--soft);color:var(--primary)}
+    main{padding:26px 16px 56px}.section{margin:24px 0;scroll-margin-top:78px}.section-head{margin-bottom:16px}
+    h2{font-size:1.65rem;margin:0 0 5px}h3{margin:.2rem 0 .6rem} .sub{color:var(--muted);margin:0}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 8px 24px #26335a0a}
+    .wide{grid-column:1/-1}.tag{font-size:.78rem;background:var(--soft);color:var(--primary);padding:4px 9px;border-radius:999px;font-weight:800}
+    code,.formula{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:#f1f3f9;border-radius:7px;padding:3px 6px;color:#3e348d}
+    .formula{display:block;padding:12px 14px;margin:10px 0;font-size:1rem;overflow-wrap:anywhere}
+    .table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;margin:12px 0}th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line)}th{background:#f7f8fc}
+    .callout{border-left:4px solid var(--primary);background:#f4f2ff;padding:12px 15px;border-radius:0 10px 10px 0}
+    label{font-weight:650;display:block;margin:10px 0 5px}input[type=text],input[type=number],select,textarea{width:100%;padding:11px 12px;border:1px solid #cbd4e2;border-radius:10px;font:inherit;background:white;color:var(--ink)}
+    button{font:inherit;font-weight:750;border:0;border-radius:10px;background:var(--primary);color:white;padding:10px 16px;cursor:pointer;margin:8px 5px 0 0}button:hover{background:#4335bc}button.secondary{background:#e9e7ff;color:#33258e}button.light{background:#e9eef5;color:#26334a}
+    .result{padding:12px 14px;border-radius:10px;background:#f1f4f9;margin-top:12px;min-height:44px}.success{color:var(--good);font-weight:750}.error{color:var(--bad);font-weight:750}
+    .question{padding:16px 0;border-bottom:1px solid var(--line)}.question:last-child{border-bottom:0}.option{display:flex;gap:9px;align-items:flex-start;font-weight:450;margin:7px 0}.option input{margin-top:7px;accent-color:var(--primary)}
+    .progress{height:9px;border-radius:999px;background:#e7eaf2;overflow:hidden;margin:12px 0}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--primary),#a196ff);transition:width .3s}
+    .muted{color:var(--muted);font-size:.93rem}.score{font-size:1.2rem;font-weight:800}.footer{text-align:center;color:var(--muted);padding:20px}
+    @media(max-width:700px){.grid{grid-template-columns:1fr}.wide{grid-column:auto}.card{padding:18px}header{padding:36px 18px}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="hero">
+    <div class="eyebrow">Інформатика · електронні таблиці</div>
+    <h1>Логічні функції<br>IF, AND, OR, NOT</h1>
+    <p>Навчися перевіряти умови в таблицях, будувати формули та використовувати їх для розв’язання життєвих задач.</p>
+    <span class="pill">Теорія</span><span class="pill">Практичний тренажер</span><span class="pill">Компетентнісне завдання</span><span class="pill">Тест із результатом</span>
+  </div>
+</header>
+<nav><div class="container"><a href="#theory">Теорія</a><a href="#practice">Спробуй сам</a><a href="#task">Компетентнісне завдання</a><a href="#quiz">Тест</a></div></nav>
+<main class="container">
+  <section class="section" id="theory">
+    <div class="section-head"><h2>1. Коротко про головне</h2><p class="sub">Прочитай теорію, а потім перевір її на практиці.</p></div>
+    <div class="grid">
+      <article class="card"><span class="tag">Поняття</span><h3>Логічний вираз</h3><p>Це вираз, який має одне з двох значень: <b>TRUE</b> (істина) або <b>FALSE</b> (хибність). Наприклад, <code>8&gt;5</code> — істина, а <code>3=7</code> — хибність.</p><p class="muted">Оператори порівняння: <code>&gt;</code>, <code>&lt;</code>, <code>=</code>, <code>&gt;=</code>, <code>&lt;=</code>, <code>&lt;&gt;</code> (не дорівнює).</p></article>
+      <article class="card"><span class="tag">Функція IF</span><h3>Якщо — то — інакше</h3><p>Функція IF повертає один результат, коли умова істинна, та інший — коли хибна.</p><span class="formula">=IF(умова; значення_якщо_істина; значення_якщо_хиба)</span><p>Приклад: <code>=IF(B2&gt;=10;"Зараховано";"Повторити")</code></p></article>
+      <article class="card"><span class="tag">Функція AND</span><h3>І — усі умови</h3><p>Повертає TRUE, лише якщо <b>всі</b> умови істинні.</p><span class="formula">=AND(умова1; умова2)</span><p>Приклад: <code>=AND(B2&gt;=7;C2="Так")</code> — бал не менше 7 і роботу здано.</p></article>
+      <article class="card"><span class="tag">Функція OR</span><h3>АБО — достатньо однієї</h3><p>Повертає TRUE, якщо істинна <b>хоча б одна</b> з умов.</p><span class="formula">=OR(B2="Так";C2="Так")</span><p>Приклад: участь у гуртку або спортивній секції.</p></article>
+      <article class="card"><span class="tag">Функція NOT</span><h3>НЕ — заперечення</h3><p>Змінює логічне значення на протилежне: TRUE → FALSE, FALSE → TRUE.</p><span class="formula">=NOT(A2="Так")</span><p>Приклад: перевірити, що учень <b>не</b> підтвердив участь.</p></article>
+      <article class="card"><span class="tag">Пам’ятай</span><h3>Як записувати формули</h3><ul><li>Формула починається зі знака <code>=</code>.</li><li>Аргументи часто розділяють крапкою з комою <code>;</code> (залежить від налаштувань програми).</li><li>Текстові значення у формулах беруть у лапки.</li><li>У різних версіях Excel назви функцій і роздільники можуть відрізнятися.</li></ul></article>
+    </div>
+    <div class="card" style="margin-top:16px"><h3>Таблиця істинності</h3><div class="table-wrap"><table><thead><tr><th>A</th><th>B</th><th>AND(A;B)</th><th>OR(A;B)</th><th>NOT(A)</th></tr></thead><tbody><tr><td>TRUE</td><td>TRUE</td><td>TRUE</td><td>TRUE</td><td>FALSE</td></tr><tr><td>TRUE</td><td>FALSE</td><td>FALSE</td><td>TRUE</td><td>FALSE</td></tr><tr><td>FALSE</td><td>TRUE</td><td>FALSE</td><td>TRUE</td><td>TRUE</td></tr><tr><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>TRUE</td></tr></tbody></table></div></div>
+  </section>
+  <section class="section" id="practice">
+    <div class="section-head"><h2>2. Інтерактивний тренажер</h2><p class="sub">Зміни значення та натисни кнопку, щоб побачити результат.</p></div>
+    <div class="grid">
+      <div class="card"><h3>Перевірка IF</h3><p>Якщо бал 7 або більше — «Добре», інакше — «Потрібно повторити».</p><label for="mark">Бал (1–12)</label><input id="mark" type="number" min="1" max="12" value="8"><button onclick="runIf()">Перевірити бал</button><div class="result" id="ifResult" aria-live="polite">Результат з’явиться тут.</div></div>
+      <div class="card"><h3>AND / OR / NOT</h3><p>Уяви, що для участі в екскурсії потрібна згода дорослих, а учень має обрати додаткову активність.</p><label for="consent">Згода отримана?</label><select id="consent"><option value="true">Так</option><option value="false">Ні</option></select><label for="activity">Обрана активність?</label><select id="activity"><option value="true">Так</option><option value="false">Ні</option></select><button onclick="runLogic()">Обчислити логічні функції</button><div class="result" id="logicResult" aria-live="polite">Результати з’являться тут.</div></div>
+    </div>
+  </section>
+  <section class="section" id="task">
+    <div class="section-head"><h2>3. Компетентнісне завдання</h2><p class="sub">Ситуація з реального життя: організовуємо шкільну екскурсію.</p></div>
+    <div class="card">
+      <p>Клас створює електронну таблицю для перевірки заявок на екскурсію. Учень може брати участь, якщо <b>згода дорослих отримана</b> та <b>внесок сплачено</b>. Якщо не вистачає хоча б однієї умови, заявка ще не готова.</p>
+      <div class="table-wrap"><table><thead><tr><th>Учень</th><th>Згода (B)</th><th>Внесок (C)</th><th>Статус (D)</th></tr></thead><tbody><tr><td>Марко</td><td>Так</td><td>Так</td><td>Готово</td></tr><tr><td>Софія</td><td>Так</td><td>Ні</td><td>Очікує</td></tr><tr><td>Данило</td><td>Ні</td><td>Так</td><td>Очікує</td></tr></tbody></table></div>
+      <p><b>Завдання:</b> вибери формулу для комірки D2, яка показує «Готово», лише коли обидві умови виконані.</p>
+      <div class="question">
+        <label class="option"><input type="radio" name="taskChoice" value="a"> <span><code>=IF(AND(B2="Так";C2="Так");"Готово";"Очікує")</code></span></label>
+        <label class="option"><input type="radio" name="taskChoice" value="b"> <span><code>=IF(OR(B2="Так";C2="Так");"Готово";"Очікує")</code></span></label>
+        <label class="option"><input type="radio" name="taskChoice" value="c"> <span><code>=IF(B2="Так";"Готово";"Очікує")</code></span></label>
+      </div>
+      <button onclick="checkTask()">Перевірити відповідь</button><button class="secondary" onclick="showTaskHint()">Підказка</button><div class="result" id="taskResult" aria-live="polite">Обери формулу.</div><div class="result" id="taskHint" hidden>Подумай, чи достатньо однієї умови, чи мають бути істинними обидві.</div>
+      <label for="explain">Поясни своїми словами, чому обрав/обрала цю формулу (необов’язково)</label><textarea id="explain" rows="3" placeholder="Моя формула працює так, тому що..."></textarea>
+    </div>
+  </section>
+  <section class="section" id="quiz">
+    <div class="section-head"><h2>4. Перевір себе</h2><p class="sub">Обери відповіді на всі запитання, а потім натисни «Завершити тест».</p></div>
+    <div class="card">
+      <div class="progress" aria-label="Прогрес тесту"><span id="progressBar"></span></div><p class="muted" id="progressText">Відповіді: 0 із 6</p>
+      <form id="quizForm">
+        <div class="question"><p><b>1. Яке значення може повертати логічний вираз?</b></p><label class="option"><input type="radio" name="q1" value="a"> <span>Лише число</span></label><label class="option"><input type="radio" name="q1" value="b"> <span>TRUE або FALSE</span></label><label class="option"><input type="radio" name="q1" value="c"> <span>Лише текст</span></label></div>
+        <div class="question"><p><b>2. Коли AND повертає TRUE?</b></p><label class="option"><input type="radio" name="q2" value="a"> <span>Коли всі умови істинні</span></label><label class="option"><input type="radio" name="q2" value="b"> <span>Коли хоча б одна умова істинна</span></label><label class="option"><input type="radio" name="q2" value="c"> <span>Коли всі умови хибні</span></label></div>
+        <div class="question"><p><b>3. Що робить OR?</b></p><label class="option"><input type="radio" name="q3" value="a"> <span>Заперечує умову</span></label><label class="option"><input type="radio" name="q3" value="b"> <span>Повертає TRUE, якщо істинна хоча б одна умова</span></label><label class="option"><input type="radio" name="q3" value="c"> <span>Завжди повертає FALSE</span></label></div>
+        <div class="question"><p><b>4. Який результат NOT(TRUE)?</b></p><label class="option"><input type="radio" name="q4" value="a"> <span>TRUE</span></label><label class="option"><input type="radio" name="q4" value="b"> <span>0</span></label><label class="option"><input type="radio" name="q4" value="c"> <span>FALSE</span></label></div>
+        <div class="question"><p><b>5. Що поверне IF, якщо умова хибна?</b></p><label class="option"><input type="radio" name="q5" value="a"> <span>Значення, вказане для хибної умови (третій аргумент)</span></label><label class="option"><input type="radio" name="q5" value="b"> <span>Завжди TRUE</span></label><label class="option"><input type="radio" name="q5" value="c"> <span>Перший аргумент повторно</span></label></div>
+        <div class="question"><p><b>6. Яка формула перевіряє, що A1 не дорівнює 0?</b></p><label class="option"><input type="radio" name="q6" value="a"> <span><code>=A1=0</code></span></label><label class="option"><input type="radio" name="q6" value="b"> <span><code>=A1&lt;&gt;0</code></span></label><label class="option"><input type="radio" name="q6" value="c"> <span><code>=A1&gt;0</code></span></label></div>
+        <button type="button" onclick="gradeQuiz()">Завершити тест</button><button class="light" type="button" onclick="resetQuiz()">Скинути відповіді</button>
+      </form>
+      <div class="result" id="quizResult" aria-live="polite">Тут з’явиться твій результат і пояснення.</div>
+    </div>
+  </section>
+  <div class="footer">Навчальна сторінка · Логічні функції в електронних таблицях</div>
+</main>
+<script>
+  function runIf(){
+    const n=Number(document.getElementById('mark').value), out=document.getElementById('ifResult');
+    if(!Number.isFinite(n)||n<1||n>12||!Number.isInteger(n)){out.innerHTML='<span class="error">Введи цілий бал від 1 до 12.</span>';return;}
+    out.innerHTML='Результат: <b>'+ (n>=7?'Добре':'Потрібно повторити') + '</b> <span class="muted">(умова '+n+' ≥ 7 — '+(n>=7?'TRUE':'FALSE')+')</span>';
+  }
+  function runLogic(){
+    const a=document.getElementById('consent').value==='true', b=document.getElementById('activity').value==='true';
+    document.getElementById('logicResult').innerHTML='AND: <b>'+String(a&&b).toUpperCase()+'</b> · OR: <b>'+String(a||b).toUpperCase()+'</b> · NOT(згода): <b>'+String(!a).toUpperCase()+'</b>';
+  }
+  function checkTask(){
+    const chosen=document.querySelector('input[name="taskChoice"]:checked'), out=document.getElementById('taskResult');
+    if(!chosen){out.innerHTML='<span class="error">Спочатку обери формулу.</span>';return;}
+    out.innerHTML=chosen.value==='a'?'<span class="success">Чудово! AND перевіряє обидві умови, а IF повертає потрібний статус.</span>':'<span class="error">Не зовсім. У задачі обидві умови мають бути виконані. Спробуй ще раз.</span>';
+  }
+  function showTaskHint(){document.getElementById('taskHint').hidden=false;}
+  const answers={q1:'b',q2:'a',q3:'b',q4:'c',q5:'a',q6:'b'};
+  const explanations={
+    q1:'Логічний вираз має одне з двох значень: TRUE або FALSE.',
+    q2:'AND повертає TRUE лише тоді, коли істинні всі передані умови.',
+    q3:'OR повертає TRUE, якщо істинна хоча б одна умова.',
+    q4:'NOT змінює логічне значення на протилежне: TRUE перетворюється на FALSE.',
+    q5:'У IF другий аргумент використовується, коли умова істинна, третій — коли хибна.',
+    q6:'Оператор <> означає «не дорівнює».'
+  };
+  function updateProgress(){
+    let count=0; for(let i=1;i<=6;i++) if(document.querySelector('input[name="q'+i+'"]:checked')) count++;
+    document.getElementById('progressText').textContent='Відповіді: '+count+' із 6';
+    document.getElementById('progressBar').style.width=(count/6*100)+'%';
+  }
+  document.getElementById('quizForm').addEventListener('change',updateProgress);
+  function gradeQuiz(){
+    let score=0, unanswered=0, feedback=[];
+    for(let i=1;i<=6;i++){
+      const key='q'+i, selected=document.querySelector('input[name="'+key+'"]:checked');
+      if(!selected){unanswered++;feedback.push('<li>Запитання '+i+': без відповіді.</li>');}
+      else if(selected.value===answers[key]){score++;feedback.push('<li><span class="success">Запитання '+i+': правильно.</span> '+explanations[key]+'</li>');}
+      else{feedback.push('<li><span class="error">Запитання '+i+': є помилка.</span> '+explanations[key]+'</li>');}
+    }
+    const pct=Math.round(score/6*100);
+    document.getElementById('quizResult').innerHTML='<div class="score">Результат: '+score+' із 6 ('+pct+'%)</div><p>'+(pct>=83?'Чудовий результат!':pct>=50?'Добре, але варто повторити окремі поняття.':'Повтори теорію та спробуй ще раз.')+'</p><p class="muted">Без відповіді: '+unanswered+'.</p><ul>'+feedback.join('')+'</ul>';
+  }
+  function resetQuiz(){
+    document.getElementById('quizForm').reset();document.getElementById('quizResult').textContent='Тут з’явиться твій результат і пояснення.';updateProgress();
+  }
+  runIf();
+</script>
+</body>
+</html>
